@@ -1,1 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Unbounded", "Golos Text", system-ui, sans-serif;
+  --font-body: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --font-doc: "PT Serif", Georgia, "Times New Roman", serif;
+
+  --color-pine-950: #081712;
+  --color-pine-900: #0d211a;
+  --color-pine-850: #122b21;
+  --color-pine-800: #17362a;
+  --color-pine-700: #1f4534;
+  --color-pine-600: #2b5a45;
+  --color-pine-500: #3a7158;
+  --color-pine-400: #5b8f74;
+  --color-pine-300: #86b29a;
+  --color-pine-200: #b1cfbd;
+  --color-pine-100: #d9e8de;
+
+  --color-paper-50: #fcfbf5;
+  --color-paper-100: #f5f3e8;
+  --color-paper-200: #eae7d8;
+  --color-paper-300: #d9d5c0;
+  --color-paper-400: #bfbaa0;
+
+  --color-brass-200: #f8d789;
+  --color-brass-300: #f2bd5c;
+  --color-brass-400: #eda63c;
+  --color-brass-500: #dd8f23;
+  --color-brass-600: #b8731a;
+
+  --color-ink-900: #182420;
+  --color-ink-600: #43514a;
+  --color-ink-400: #6e7c74;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-pine-950 font-body text-paper-100 antialiased;
+  }
+  ::selection {
+    background: rgba(237, 166, 60, 0.35);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1f4534 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #1f4534;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* ---------- фоны ---------- */
+
+.bg-texture {
+  background-image:
+    radial-gradient(1100px 520px at 85% -10%, rgba(237, 166, 60, 0.06), transparent 60%),
+    radial-gradient(900px 560px at -10% 110%, rgba(43, 90, 69, 0.28), transparent 62%),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 7px);
+}
+
+.desk-grid {
+  background-color: #e4e1d1;
+  background-image:
+    radial-gradient(1000px 300px at 50% 0%, rgba(20, 33, 27, 0.08), transparent 70%),
+    radial-gradient(rgba(23, 54, 42, 0.16) 1px, transparent 1.4px);
+  background-size: auto, 22px 22px;
+}
+
+/* ---------- типографика документа ---------- */
+
+.doc-prose {
+  font-family: var(--font-doc);
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: #22302a;
+}
+.doc-prose p {
+  margin: 0 0 0.62em;
+  text-align: justify;
+}
+.doc-prose h1 {
+  font-size: 19px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0.3em 0 0.9em;
+}
+.doc-prose h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 1.1em 0 0.5em;
+}
+.doc-prose strong,
+.doc-prose b {
+  font-weight: 700;
+}
+.doc-prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+.doc-prose td,
+.doc-prose th {
+  border: 1px solid #9aa69e;
+  padding: 5px 9px;
+  font-size: 13px;
+  text-align: left;
+  vertical-align: top;
+}
+.doc-prose ul,
+.doc-prose ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+.doc-prose img {
+  max-width: 100%;
+}
+
+/* ---------- анимации ---------- */
+
+.anim-rise {
+  animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.anim-pop {
+  animation: pop 0.25s ease-out both;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.anim-toast {
+  animation: toast-in 0.32s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    translate: 18px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.stamp-anim {
+  animation:
+    stamp-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both,
+    stamp-out 0.55s ease 1.75s forwards;
+}
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: scale(2.4) rotate(-20deg);
+  }
+  62% {
+    opacity: 1;
+    transform: scale(0.94) rotate(-7deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+}
+@keyframes stamp-out {
+  to {
+    opacity: 0;
+    transform: scale(1) rotate(-8deg);
+  }
+}
+
+.anim-rot {
+  animation: rot 160s linear infinite;
+}
+@keyframes rot {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.float-slow {
+  animation: floaty 14s ease-in-out infinite alternate;
+}
+@keyframes floaty {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -22px;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #ebe8da 25%, #f8f6ec 45%, #ebe8da 65%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
